@@ -87,6 +87,10 @@ define BuildPlugin
   define Package/$(1)/install
 	$(INSTALL_DIR) $$(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/$(2) $$(1)/usr/bin/
+    ifdef CONFIG_CONFLICT_SYMLIBKS
+	mv $$(1)/usr/bin/$(2) $$(1)/usr/bin/$(2).$(PKG_NAME)
+	ln -s $(2).$(PKG_NAME) $$(1)/usr/bin/$(2)
+    endif
   endef
 
   $$(eval $$(call BuildPackage,$(1)))
