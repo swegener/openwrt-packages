@@ -1,0 +1,15 @@
+we need sys/io.h for the inline version of i/o functions
+
+--- a/hwaccess.h
++++ b/hwaccess.h
+@@ -27,10 +27,8 @@
+ #include "platform.h"
+ 
+ #if IS_X86
+-#if defined(__GLIBC__)
+ #include <sys/io.h>
+ #endif
+-#endif
+ 
+ #if NEED_PCI == 1
+ /*
